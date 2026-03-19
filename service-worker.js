@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ledger-v1';
+const CACHE_NAME = 'ledger-v2';
 const URLS = [
   '/ledger/',
   '/ledger/index.html',
@@ -23,6 +23,6 @@ self.addEventListener('activate', e => {
 
 self.addEventListener('fetch', e => {
   e.respondWith(
-    caches.match(e.request).then(cached => cached || fetch(e.request))
+    fetch(e.request).catch(() => caches.match(e.request))
   );
 });
